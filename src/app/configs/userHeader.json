@@ -1,7 +1,7 @@
 [  
   {  
     "columId": 1,  
-    "columHeader": "UserId",  
+    "columHeader": "userId",  
     "columnDataAlias": "User Id",  
     "filterable": true  
   },  
@@ -13,25 +13,25 @@
   },  
   {  
     "columId": 3,  
-    "columHeader": "LastName",  
+    "columHeader": "lastName",  
     "columnDataAlias": "Last Name",  
     "filterable": true  
   },  
   {  
     "columId": 4,  
-    "columHeader": "LoginName",  
+    "columHeader": "loginName",  
     "columnDataAlias": "Login Name",  
     "filterable": true  
   },  
   {  
     "columId": 5,  
-    "columHeader": "Password",  
+    "columHeader": "password",  
     "columnDataAlias": "Password",  
     "filterable": false  
   },    
   {  
     "columId": 6,  
-    "columHeader": "Email",  
+    "columHeader": "email",  
     "columnDataAlias": "Employee Email",  
     "filterable": true  
   }

@@ -5,6 +5,7 @@ import { UserGroupComponent } from './user-group/user-group.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
+  { path: '', component: UsersComponent },
   { path: 'users', component: UsersComponent },
   { path: 'user-access', component: UserAccessComponent },
   { path: 'user-group', component: UserGroupComponent },

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IHeaderColumn } from '../models/header-column';
 import { User } from '../models/user.model';
@@ -14,11 +14,15 @@ export class UsersComponent {
   public isAddMode: boolean = false;
   public userHeaders: IHeaderColumn[] = [];
   public isFilter: boolean = false;
+  public filter: any = new User();
   public users: User[] = [];
   public userHeaderUrl: string = '/app/configs/userHeader.json';
   public usersUrl: string = '/assets/data/user.json';
   public enableSave: boolean = false;
-  constructor(private userService: UsersService, private modalService: NgbModal) {
+  @ViewChild("content") modalContent: TemplateRef<any> | undefined;
+
+  constructor(private userService: UsersService, private modalService: NgbModal
+  ) {
 
   }
 
@@ -26,6 +30,30 @@ export class UsersComponent {
     this.LoadHeader();
     this.LoadUsers();
     this.enableSave = false;
+  }
+
+  getusers() {
+    let tempUsers = [...this.users];
+    if (this.filter.userId) {
+      tempUsers = tempUsers.filter(u => u.userId.includes(this.filter.userId));
+    }
+    if (this.filter.firstName) {
+      tempUsers = tempUsers.filter(u => u.firstName.includes(this.filter.firstName));
+    }
+    if (this.filter.lastName) {
+      tempUsers = tempUsers.filter(u => u.lastName.includes(this.filter.lastName));
+    }
+    if (this.filter.loginName) {
+      tempUsers = tempUsers.filter(u => u.loginName.includes(this.filter.loginName));
+    }
+    if (this.filter.email) {
+      tempUsers = tempUsers.filter(u => u.email.includes(this.filter.email));
+    }
+    return tempUsers;
+  }
+
+  onChangeHeaderFilter(e: any, header: IHeaderColumn) {
+    this.filter[header.columHeader] = e.target.value;
   }
 
   modelChange(user: User) {
@@ -47,7 +75,6 @@ export class UsersComponent {
 
   async filterOn(header: IHeaderColumn) {
     this.isFilter = header.filterable;
-    //this.searchFilterPipe.transform(this.users,header,"10")
   }
   public editEnable(edit: boolean) {
     this.isEditing = edit;
@@ -67,15 +94,19 @@ export class UsersComponent {
   async removeUser(user: User) {
     if (confirm("Are you sure you want to delete?")) {
       var indexof = this.users.indexOf(user)
-    this.users.splice(indexof, 1);
-    this.enableSave = true;
+      this.users.splice(indexof, 1);
+      this.enableSave = true;
     }
   }
 
+  async filterData(searchText: string, filterType: string) {
+
+  }
   async saveForm() {
     //check the duplicate userId.
     if (this.hasDuplicate()) {
-      this.modalService.open("content");
+      this.modalService.open(this.modalContent).result.then((result) => {
+      });
     }
     else {
       this.users.forEach(record => {

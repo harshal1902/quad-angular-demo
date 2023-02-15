@@ -11,7 +11,7 @@
                 <th>
                     <span *ngIf="!header.filterable || !isFilter" scope="col" name="header.columHeader"
                         (click)="filterOn(header)">{{header.columnDataAlias}}</span>
-                    <input *ngIf="header.filterable && isFilter" id="table-filtering-search" class="form-control"
+                    <input *ngIf="header.filterable && isFilter" class="form-control" (keyup)="onChangeHeaderFilter($event, header)"
                         [placeholder]="header.columnDataAlias" type="text" />
                 </th>
             </ng-container>
@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let user of users;">
+        <ng-container *ngFor="let user of getusers()">
             <tr>
                 <td *ngIf="isEditing"><button type="button" class="btn btn-danger" (click)="removeUser(user)">-</button>
                 </td>
@@ -61,13 +61,10 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Hi there!</h4>
+        <h4 class="modal-title">Error Message!</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p>Hello,!</p>
+        <p>Duplicate User Id</p>
     </div>
-    <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div> -->
 </ng-template>

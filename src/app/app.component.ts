@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -8,14 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'quad-demo';
-  public isEdit : boolean = false;
-  constructor(private modalService: NgbModal) {
+  constructor() {
   }
-  public open(modal: any): void {
-    this.modalService.open(modal);
-  }
-  public editEnable(isedit:boolean): void {
-    this.isEdit= isedit;
-  }
+ 
 }
