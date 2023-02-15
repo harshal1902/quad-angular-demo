@@ -1,0 +1,38 @@
+[  
+  {  
+    "columId": 1,  
+    "columHeader": "UserId",  
+    "columnDataAlias": "User Id",  
+    "filterable": true  
+  },  
+  {  
+    "columId": 2,  
+    "columHeader": "firstName",  
+    "columnDataAlias": "First Name",  
+    "filterable": true  
+  },  
+  {  
+    "columId": 3,  
+    "columHeader": "LastName",  
+    "columnDataAlias": "Last Name",  
+    "filterable": true  
+  },  
+  {  
+    "columId": 4,  
+    "columHeader": "LoginName",  
+    "columnDataAlias": "Login Name",  
+    "filterable": true  
+  },  
+  {  
+    "columId": 5,  
+    "columHeader": "Password",  
+    "columnDataAlias": "Password",  
+    "filterable": false  
+  },    
+  {  
+    "columId": 6,  
+    "columHeader": "Email",  
+    "columnDataAlias": "Employee Email",  
+    "filterable": true  
+  }
+]  

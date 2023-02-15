@@ -1,0 +1,73 @@
+<app-header (isEdit)="editEnable($event)" (isSave)="saveForm()" [isEnableSave]="enableSave"></app-header>
+<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th *ngIf="isEditing">
+                <button type="button" class="btn btn-primary" (click)="addUser()">+</button>
+            </th>
+            <ng-container *ngFor="let header of userHeaders;">
+                <th>
+                    <span *ngIf="!header.filterable || !isFilter" scope="col" name="header.columHeader"
+                        (click)="filterOn(header)">{{header.columnDataAlias}}</span>
+                    <input *ngIf="header.filterable && isFilter" id="table-filtering-search" class="form-control"
+                        [placeholder]="header.columnDataAlias" type="text" />
+                </th>
+            </ng-container>
+
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let user of users;">
+            <tr>
+                <td *ngIf="isEditing"><button type="button" class="btn btn-danger" (click)="removeUser(user)">-</button>
+                </td>
+                <td>
+                    <span *ngIf="user.id != 0">{{user.userId}}</span>
+                    <input *ngIf="isEditing && isAddMode && user.id == 0" class="form-control" placeholder="userId"
+                        type="text" [(ngModel)]="user.userId" [value]="user.userId"
+                        (ngModelChange)="modelChange(user)" />
+                </td>
+                <td>
+                    <span *ngIf="!isEditing">{{user.firstName}}</span>
+                    <input *ngIf="isEditing" class="form-control" placeholder="firstName" type="text"
+                        [(ngModel)]="user.firstName" [value]="user.firstName" (ngModelChange)="modelChange(user)" />
+                </td>
+                <td>
+                    <span *ngIf="!isEditing">{{user.lastName }}</span>
+                    <input *ngIf="isEditing" class="form-control" placeholder="lastName" type="text"
+                        [(ngModel)]="user.lastName" [value]="user.lastName" (ngModelChange)="modelChange(user)" />
+                </td>
+                <td>
+                    <span *ngIf="!isEditing">{{user.loginName}}</span>
+                    <input *ngIf="isEditing" class="form-control" placeholder="loginName" type="text"
+                        [(ngModel)]="user.loginName" [value]="user.loginName" (ngModelChange)="modelChange(user)" />
+                </td>
+                <td>
+                    <span *ngIf="!isEditing">****</span>
+                    <input *ngIf="isEditing" class="form-control" placeholder="password" type="text"
+                        [(ngModel)]="user.password" [value]="user.password" (ngModelChange)="modelChange(user)" />
+                </td>
+                <td>
+                    <span *ngIf="!isEditing">{{user.email}}</span>
+                    <input *ngIf="isEditing" class="form-control" placeholder="email" type="text"
+                        [(ngModel)]="user.email" [value]="user.email" (ngModelChange)="modelChange(user)" />
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Hi there!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>Hello,!</p>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div> -->
+</ng-template>
