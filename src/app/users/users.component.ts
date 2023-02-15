@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IHeaderColumn } from '../models/header-column';
 import { User } from '../models/user.model';
-// import { SearchFilterPipe } from '../Pipes/search-filter.pipe';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -19,9 +18,7 @@ export class UsersComponent {
   public userHeaderUrl: string = '/app/configs/userHeader.json';
   public usersUrl: string = '/assets/data/user.json';
   public enableSave: boolean = false;
-  constructor(private userService: UsersService, private modalService: NgbModal,
-    //private searchFilterPipe:SearchFilterPipe
-    ) {
+  constructor(private userService: UsersService, private modalService: NgbModal) {
 
   }
 
@@ -75,9 +72,6 @@ export class UsersComponent {
     }
   }
 
-  async filterData(searchText: string, filterType: string) {
-
-  }
   async saveForm() {
     //check the duplicate userId.
     if (this.hasDuplicate()) {
